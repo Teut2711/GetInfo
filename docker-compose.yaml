@@ -1,0 +1,50 @@
+
+services:
+  app:
+    container_name: app
+    build:
+      context: ./app/get_info
+    volumes:
+      - ./app/get_info:/get_info
+    environment:
+      JAVA_HOME: /android
+      ANDROID_HOME: /sdk 
+    ports:
+      - "8081:8081"
+    entrypoint: sleep infinity
+#     depends_on:
+#       - backend
+#       - database
+
+#   backend:
+#     build:
+#       context: ./backend/get_info
+#     volumes:
+#       - ./backend/get_info:/get_info
+#     ports:
+#       - "8080:8080"
+#     depends_on:
+#       database:
+#         condition: service_started 
+#       # redis: 
+#       #   condition: service_started
+#   database:
+#     build:
+#       context: ./database/get_info
+#     environment:
+#       POSTGRES_USER: user
+#       POSTGRES_PASSWORD: password
+#       POSTGRES_DB: mydb
+#     ports:
+#       - "5432:5432"
+#     volumes:
+#       - postgres_data:/var/lib/postgresql/data
+#     healthcheck:
+#       test: ["CMD-SHELL", "pg_isready -U user -d mydb"]
+#       interval: 30s
+#       timeout: 10s
+#       retries: 5
+#       start_period: 10s   
+
+# volumes:
+#   postgres_data:
